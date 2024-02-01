@@ -6,7 +6,7 @@ part of 'heart_rate.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$heartRateHash() => r'297e5917006324ede8a0eaa1821a532597eb38e7';
+String _$heartRateHash() => r'0e0de3db9be1ce8bca97d08f3075e968eabbc200';
 
 /// See also [HeartRate].
 @ProviderFor(HeartRate)

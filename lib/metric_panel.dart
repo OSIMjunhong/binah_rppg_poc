@@ -4,10 +4,11 @@ import 'package:binah_poc/models/vital_sign/spo2.dart';
 import 'package:binah_poc/models/vital_sign/stress_index.dart';
 import 'package:binah_poc/models/vital_sign/stress_level.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class MetricPanel extends StatelessWidget {
+  const MetricPanel({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Column(

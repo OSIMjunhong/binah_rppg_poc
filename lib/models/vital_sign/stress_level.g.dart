@@ -6,7 +6,7 @@ part of 'stress_level.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$stressHash() => r'ca5ddad42f72773476ce79f4e4f64efdf5dbecf6';
+String _$stressHash() => r'676785d772a28271fecd0725fb2055b09314d2b9';
 
 /// See also [Stress].
 @ProviderFor(Stress)

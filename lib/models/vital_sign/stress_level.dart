@@ -9,7 +9,4 @@ class Stress extends _$Stress {
   StressLevel build() => StressLevel.unknown;
 
   void update(StressLevel value) => state = value;
-
-  @override
-  String toString() => state == StressLevel.unknown ? '-' : state.name;
 }

@@ -4,7 +4,6 @@ import 'package:binah_poc/metric_panel.dart';
 import 'package:binah_poc/models/binah_session.dart';
 import 'package:binah_poc/models/image/image_validity.dart';
 import 'package:binah_poc/models/measurement.dart';
-import 'package:binah_poc/models/vital_sign/heart_rate.dart';
 import 'package:binah_poc/widget_size.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -36,7 +35,7 @@ class _MainAppState extends ConsumerState<MainApp> {
             context: context,
             builder: (_) {
               return AlertDialog(
-                title: Text('Success'),
+                title: const Text('Success'),
                 actions: [
                   TextButton(
                     onPressed: () => Navigator.pop(context, 'OK'),
@@ -66,9 +65,9 @@ class _MainAppState extends ConsumerState<MainApp> {
                       'Status: ${ref.watch(binahImageValidityProvider)}',
                       style: const TextStyle(fontWeight: FontWeight.bold),
                     )
-                  : Text(
+                  : const Text(
                       'No Status',
-                      style: const TextStyle(fontWeight: FontWeight.bold),
+                      style: TextStyle(fontWeight: FontWeight.bold),
                     ),
               const SizedBox(height: 10),
               MetricPanel(),

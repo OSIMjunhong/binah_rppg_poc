@@ -6,7 +6,7 @@ part of 'respiration_rate.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$respirationRateHash() => r'21df44c0c3b64d3a6763ae76ce217ba8346b10fe';
+String _$respirationRateHash() => r'785d29f63b686e33ff22e9165baf6c937b9d3851';
 
 /// See also [RespirationRate].
 @ProviderFor(RespirationRate)

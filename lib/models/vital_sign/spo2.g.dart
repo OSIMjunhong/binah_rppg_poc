@@ -6,7 +6,7 @@ part of 'spo2.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$spo2Hash() => r'6374f77ab207e36128403310228ab6fb556d83b0';
+String _$spo2Hash() => r'fe5272b13845b5e54c8cbbfde635f6a75ae03fc6';
 
 /// See also [Spo2].
 @ProviderFor(Spo2)

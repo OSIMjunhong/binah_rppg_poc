@@ -8,7 +8,4 @@ class RespirationRate extends _$RespirationRate {
   int build() => 0;
 
   void update(int value) => state = value;
-
-  @override
-  String toString() => state == 0 ? '-' : '$state';
 }

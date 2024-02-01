@@ -6,7 +6,7 @@ part of 'stress_index.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$stressIndexHash() => r'b65b8470b84e0ff76f14f637338fbe80d6c2a2d3';
+String _$stressIndexHash() => r'2e5d119635758e75cd4727cc0c3743c359779ed5';
 
 /// See also [StressIndex].
 @ProviderFor(StressIndex)
