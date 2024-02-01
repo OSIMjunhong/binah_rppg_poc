@@ -1,0 +1,28 @@
+PODS:
+  - binah_flutter_sdk (5.4.1):
+    - Flutter
+  - Flutter (1.0.0)
+  - permission_handler_apple (9.1.1):
+    - Flutter
+
+DEPENDENCIES:
+  - binah_flutter_sdk (from `.symlinks/plugins/binah_flutter_sdk/ios`)
+  - Flutter (from `Flutter`)
+  - permission_handler_apple (from `.symlinks/plugins/permission_handler_apple/ios`)
+
+EXTERNAL SOURCES:
+  binah_flutter_sdk:
+    :path: ".symlinks/plugins/binah_flutter_sdk/ios"
+  Flutter:
+    :path: Flutter
+  permission_handler_apple:
+    :path: ".symlinks/plugins/permission_handler_apple/ios"
+
+SPEC CHECKSUMS:
+  binah_flutter_sdk: 549501f7546cac35038b78bd5312bd34d6e0129e
+  Flutter: f04841e97a9d0b0a8025694d0796dd46242b2854
+  permission_handler_apple: e76247795d700c14ea09e3a2d8855d41ee80a2e6
+
+PODFILE CHECKSUM: 1959d098c91d8a792531a723c4a9d7e9f6a01e38
+
+COCOAPODS: 1.13.0
