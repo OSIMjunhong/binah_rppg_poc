@@ -1,0 +1,2 @@
+rootProject.name = 'binah_flutter_sdk'
+include ':binah_flutter_sdk'
