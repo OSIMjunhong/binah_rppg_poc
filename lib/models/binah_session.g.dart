@@ -6,7 +6,7 @@ part of 'binah_session.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$binahSessionHash() => r'84b6320072ce246bad37aa1d267ddfbeba46eb80';
+String _$binahSessionHash() => r'9ff2d590e2a9f84f06f88869a7078817c3cf4637';
 
 /// See also [BinahSession].
 @ProviderFor(BinahSession)

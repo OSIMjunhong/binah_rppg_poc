@@ -8,7 +8,5 @@ class BinahSession extends _$BinahSession {
   @override
   SessionState build() => SessionState.initializing;
 
-  void update(SessionState newState) {
-    state = newState;
-  }
+  void update(SessionState newState) => state = newState;
 }
