@@ -6,6 +6,8 @@ import 'package:binah_poc/listeners/vital_sign_listener.dart';
 import 'package:binah_poc/listeners/image_data_listener.dart';
 import 'package:binah_poc/listeners/session_info_listener.dart';
 import 'package:binah_poc/models/binah_session.dart';
+import 'package:binah_poc/models/image/image_data.dart';
+import 'package:binah_poc/models/image/image_validity.dart';
 import 'package:binah_poc/models/license/license_details.dart';
 import 'package:binah_poc/models/vital_sign/heart_rate.dart';
 import 'package:binah_poc/models/vital_sign/respiration_rate.dart';
@@ -55,6 +57,8 @@ class RPpgSession extends _$RPpgSession {
     ref.read(stressProvider.notifier).update(StressLevel.unknown);
     ref.read(spo2Provider.notifier).update(0);
     ref.read(stressIndexProvider.notifier).update(0);
+    ref.read(binahImageDataProvider.notifier).update(null);
+    ref.read(binahImageValidityProvider.notifier).update(99);
   }
 
   Future<void> stop() async {
