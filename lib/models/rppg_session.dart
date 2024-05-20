@@ -38,15 +38,14 @@ class RPpgSession extends _$RPpgSession {
       clearData();
 
       state = await AsyncValue.guard(createNewSession);
-      if (!state.hasError) {
+      if (!state.hasError && state.hasValue) {
         for (int i = 0; i < 10; i++) {
           if (ref.read(binahSessionProvider) == SessionState.ready) {
+            state.value!.start(60);
             break;
           }
           Future.delayed(const Duration(milliseconds: 500));
         }
-      } else {
-        print('err');
       }
     }
   }
