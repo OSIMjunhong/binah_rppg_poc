@@ -6,7 +6,7 @@ part of 'error.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$rPpgErrorHash() => r'bd7802972483e48a7d1ab352d84a00142a084140';
+String _$rPpgErrorHash() => r'2e7157336dfc1ea2f59944d8748ba145fd4d2ac6';
 
 /// See also [RPpgError].
 @ProviderFor(RPpgError)
