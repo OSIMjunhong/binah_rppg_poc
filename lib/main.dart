@@ -3,7 +3,8 @@ import 'package:binah_flutter_sdk/ui/camera_preview_view.dart';
 import 'package:binah_poc/metric_panel.dart';
 import 'package:binah_poc/models/binah_session.dart';
 import 'package:binah_poc/models/image/image_validity.dart';
-import 'package:binah_poc/models/measurement.dart';
+import 'package:binah_poc/models/rppg_session.dart';
+import 'package:binah_poc/models/session_info/error.dart';
 import 'package:binah_poc/widget_size.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -44,23 +45,52 @@ class _MainAppState extends ConsumerState<MainApp> {
                 ],
               );
             });
-        ref.read(measurementProvider.notifier).removeSession();
+      }
+    });
+    ref.listen(rPpgErrorProvider, (_, value) {
+      if (value != null) {
+        showDialog(
+            context: context,
+            builder: (_) {
+              return AlertDialog(
+                title: Text('Error : ${value.code}'),
+                content: Text(value.domain),
+                actions: [
+                  TextButton(
+                    onPressed: () {
+                      ref.read(rPpgErrorProvider.notifier).clear();
+                      ref.read(rPpgSessionProvider.notifier).stop();
+                      Navigator.pop(context);
+                    },
+                    child: const Text('OK'),
+                  ),
+                ],
+              );
+            });
       }
     });
     return Scaffold(
         floatingActionButton: FloatingActionButton(
-          onPressed: () => ref.read(measurementProvider.notifier).startOrStop(),
+          onPressed: () {
+            final notifier = ref.read(rPpgSessionProvider.notifier);
+            if (ref.read(binahSessionProvider) == SessionState.processing) {
+              notifier.stop();
+            } else {
+              notifier.start();
+            }
+          },
           child: Text(ref.watch(binahSessionProvider) == SessionState.processing
               ? 'Stop'
               : 'Start'),
         ),
-        body: Padding(
-          padding: const EdgeInsets.all(8.0),
+        body: SafeArea(
+          minimum: const EdgeInsets.all(8.0),
           child: Column(
             children: [
-              const SizedBox(height: 300, child: _CameraPreview()),
+              const _CameraPreview(),
+              // const SizedBox(height: 300, child: _CameraPreview()),
               const SizedBox(height: 10),
-              ref.watch(measurementProvider) != null
+              ref.watch(rPpgSessionProvider).hasValue
                   ? Text(
                       'Status: ${ref.watch(binahImageValidityProvider)}',
                       style: const TextStyle(fontWeight: FontWeight.bold),
@@ -70,7 +100,7 @@ class _MainAppState extends ConsumerState<MainApp> {
                       style: TextStyle(fontWeight: FontWeight.bold),
                     ),
               const SizedBox(height: 10),
-              MetricPanel(),
+              const MetricPanel(),
             ],
           ),
         ));
@@ -90,21 +120,22 @@ class _CameraPreviewState extends ConsumerState<_CameraPreview> {
   @override
   Widget build(BuildContext context) {
     var sessionState = ref.watch(binahSessionProvider);
-    if (sessionState == SessionState.initializing) {
-      return Container();
-    }
 
     return WidgetSize(
       onChange: (size) => setState(() {
         this.size = size;
       }),
-      child: const SizedBox(
+      child: SizedBox(
         width: double.infinity,
         child: AspectRatio(
           aspectRatio: 0.75,
           child: Stack(
             children: <Widget>[
-              CameraPreviewView(),
+              (sessionState == SessionState.ready ||
+                      sessionState == SessionState.starting ||
+                      sessionState == SessionState.processing)
+                  ? const CameraPreviewView()
+                  : const SizedBox.expand(),
               // Image.asset('assets/images/rppg_video_mask.png'),
               // _FaceDetectionView(size: size)
             ],
