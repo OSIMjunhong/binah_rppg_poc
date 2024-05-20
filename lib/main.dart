@@ -2,6 +2,7 @@ import 'package:binah_flutter_sdk/session/session_state.dart';
 import 'package:binah_flutter_sdk/ui/camera_preview_view.dart';
 import 'package:binah_poc/metric_panel.dart';
 import 'package:binah_poc/models/binah_session.dart';
+import 'package:binah_poc/models/image/image_data.dart';
 import 'package:binah_poc/models/image/image_validity.dart';
 import 'package:binah_poc/models/rppg_session.dart';
 import 'package:binah_poc/models/session_info/error.dart';
@@ -92,7 +93,7 @@ class _MainAppState extends ConsumerState<MainApp> {
               const SizedBox(height: 10),
               ref.watch(rPpgSessionProvider).hasValue
                   ? Text(
-                      'Status: ${ref.watch(binahImageValidityProvider)}',
+                      'Status: ${ref.watch(binahImageValidityProvider.notifier).toString()}',
                       style: const TextStyle(fontWeight: FontWeight.bold),
                     )
                   : const Text(
@@ -137,11 +138,47 @@ class _CameraPreviewState extends ConsumerState<_CameraPreview> {
                   ? const CameraPreviewView()
                   : const SizedBox.expand(),
               // Image.asset('assets/images/rppg_video_mask.png'),
-              // _FaceDetectionView(size: size)
+              _FaceDetectionView(size: size)
             ],
           ),
         ),
       ),
     );
+  }
+}
+
+class _FaceDetectionView extends ConsumerWidget {
+  final Size? size;
+  const _FaceDetectionView({required this.size});
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final imageInfo = ref.watch(binahImageDataProvider);
+
+    if (imageInfo == null) {
+      return Container();
+    }
+
+    var roi = imageInfo.roi;
+    print(roi);
+    if (roi == null) {
+      return Container();
+    }
+
+    var devicePixelRatio = MediaQuery.of(context).devicePixelRatio;
+    var widthFactor = size!.width / (imageInfo.imageWidth / devicePixelRatio);
+    var heightFactor =
+        size!.height / (imageInfo.imageHeight / devicePixelRatio);
+    return Positioned(
+        left: (roi.left * widthFactor) / devicePixelRatio,
+        top: (roi.top * heightFactor) / devicePixelRatio,
+        child: Container(
+            decoration: BoxDecoration(
+              color: Colors.transparent,
+              border: Border.all(width: 4, color: const Color(0xff0653F4)),
+              borderRadius: BorderRadius.circular(5),
+            ),
+            width: (roi.width * widthFactor) / devicePixelRatio,
+            height: (roi.height * heightFactor) / devicePixelRatio));
   }
 }
