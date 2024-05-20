@@ -5,6 +5,7 @@ import 'package:binah_flutter_sdk/session/session_enabled_vital_signs.dart';
 import 'package:binah_flutter_sdk/session/session_info_listener.dart';
 import 'package:binah_flutter_sdk/session/session_state.dart';
 import 'package:binah_poc/models/binah_session.dart';
+import 'package:binah_poc/models/session_info/error.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 final class BinahSessionListener implements SessionInfoListener {
@@ -16,7 +17,7 @@ final class BinahSessionListener implements SessionInfoListener {
 
   @override
   void onError(ErrorData errorData) =>
-      print('error code : ${errorData.code}, domain: ${errorData.domain}');
+      _ref.read(rPpgErrorProvider.notifier).update(errorData);
 
   @override
   void onLicenseInfo(LicenseInfo licenseInfo) {}
